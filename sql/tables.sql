@@ -1,0 +1,6 @@
+CREATE TABLE event (
+	id SERIAL PRIMARY KEY,
+	patient VARCHAR(255),
+	startDate TIMESTAMP,
+	endDate TIMESTAMP
+);

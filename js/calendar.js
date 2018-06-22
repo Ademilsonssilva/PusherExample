@@ -8,17 +8,44 @@ $(document).ready(function () {
 		header: {
 			left: "prev,today,next",
 			center: "title",
-			right: "agendaDay,agendaWeek,month",
+			right: "agendaDay,agendaWeek",
 		},
+		defaultView: "agendaWeek",
 		allDaySlot: false,
 		height: "auto",
-		minTime: "08:00:00",
+		minTime: "09:00:00",
 		maxTime: "18:00:00",
-		events: function (start, end, timezone, callback) {
-			console.log(start);
-			console.log(end);
-			console.log(timezone);
-			console.log(callback);
+		selectable: true,
+		select: function (start, end) {
+			patientName = window.prompt("Informe o nome do paciente");
+			
+			if ( patientName != '' && patientName != null) {
+
+				var newEvent = {
+					title: patientName,
+					start: moment(start).format("YYYY-MM-DD HH:mm"),
+					end: moment(end).format("YYYY-MM-DD HH:mm"),
+				}
+				
+				$.ajax({
+					url: "http://localhost:8080/app/server.php",
+					type: "post",
+					data: {
+						action: "addevent",
+						event: JSON.stringify(newEvent),
+					},
+					success: function (response) {
+						if (response == "true") {
+							showMessage("success", "Paciente "+newEvent.title+" inserido com sucesso");
+							$("#calendar").fullCalendar("renderEvent", newEvent, true);
+						}
+						else {
+							showMessage("danger", "Ops! Algo deu errado!");
+							console.log(response);
+						}
+					},
+				})
+			}
 		}
 	});
 
