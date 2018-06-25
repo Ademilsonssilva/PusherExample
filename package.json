@@ -1,0 +1,24 @@
+{
+  "name": "pusherexample",
+  "version": "1.0.0",
+  "description": "Pusher Example with PHP and jQuery",
+  "main": "index.html",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "fullcalendar": "^3.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ademilsonssilva/PusherExample.git"
+  },
+  "author": "Ademilson Santana da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ademilsonssilva/PusherExample/issues"
+  },
+  "homepage": "https://github.com/ademilsonssilva/PusherExample#readme"
+}
