@@ -16,6 +16,16 @@ $(document).ready(function () {
 		minTime: "09:00:00",
 		maxTime: "18:00:00",
 		selectable: true,
+		events: {
+			url: "http://localhost:8080/app/server.php",
+			type: 'POST',
+			data: {
+				action: "getevents",
+			},
+			success: function (response) {
+				// alterações no carregamento dos eventos
+			}
+		},
 		select: function (start, end) {
 			patientName = window.prompt("Informe o nome do paciente");
 			
@@ -44,9 +54,9 @@ $(document).ready(function () {
 							console.log(response);
 						}
 					},
-				})
+				});
 			}
-		}
+		},
 	});
 
 });

@@ -2,10 +2,11 @@
 /**
  * @developer: Ademilson
  */
-namespace PHP\PusherExample;
+namespace Ademilson\PusherExample;
 
 require("fullCalendar.class.php");
-use \PHP\PusherExample\App\FullCalendar;	
+require("../vendor/autoload.php");
+use \Ademilson\PusherExample\App\FullCalendar;	
 
 header('Access-Control-Allow-Origin: *');
 
@@ -27,10 +28,34 @@ if ($_POST["action"] == "addevent"){
 		echo "true";
 	}
 	else {
-		echo "nao deu nao";
+		echo "Ops! Ocorreu um erro!";
 	}
 
 }
+else if ($_POST["action"] == "getevents") {
+
+	print_r( json_encode( $fullCalendar->getEventsAsJson() ) );
+
+}
+
+else if ($_POST["action"] == "generateevents") {
+
+	$events = $fullCalendar->generateRandomEvents();
+
+	foreach ($events as $event) {
+		$fullCalendar->addEvent($event);
+	}
+
+	echo "true";
+}
+
+else if ($_POST["action"] == "deleteevents") {
+	
+	$fullCalendar->deleteEvents();
+	echo "true";
+
+}
+
 else {
 	echo "Ação inexistente";
 }

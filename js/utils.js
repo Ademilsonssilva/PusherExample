@@ -14,3 +14,13 @@ function showMessage(style, message)
 	$("#messageContainer").html("");
 	$("#messageContainer").append(div).fadeIn(500).fadeOut(4500);
 }
+
+function showNewNotification (message) 
+{
+	row = $("<div class='row'></div>");
+	row_content = $("<div class='col-sm-12'></div>");
+	content = $("<p class='bg-success'>"+message+"</p>");
+
+	row.append(row_content.append(content));
+	$("#notificationContainer").append(row);
+}
