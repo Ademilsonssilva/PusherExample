@@ -1,11 +1,11 @@
 {
 	"name": "Ademilson/PusherExample",
-	"authors": {
+	"authors": [
 		{
 			"name": "Ademilson Santana",
 			"email": "ademilsonssilva1@gmail.com"
 		}
-	},
+	],
     "require": {
         "pusher/pusher-php-server": "^3.0"
     }

@@ -9,7 +9,12 @@
 	$user 	= "user";
 	$pwd 	= "postgres";
 
-	$conn = new PDO("{$driver}:host={$localhost};dbname={$db}", $user, $pwd);
+	try {
+		$conn = new PDO("{$driver}:host={$host};dbname={$db}", $user, $pwd);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch(PDOException $e) {
+		echo 'ERROR: ' . $e->getMessage();
+	}
 	/*****************************/
 
 	/********** PUSHER ***********/
