@@ -1,8 +1,9 @@
 /**
  * @developer: Ademilson
  */
-$(document).ready(function () {
-	
+
+function startCalendar()
+{
 
 	$("#calendar").fullCalendar({
 		header: {
@@ -46,12 +47,13 @@ $(document).ready(function () {
 					},
 					success: function (response) {
 						if (response == "true") {
-							showMessage("success", "Paciente "+newEvent.title+" inserido com sucesso");
+							// showMessage("success", "Paciente "+newEvent.title+" inserido com sucesso");
+							swal("Sucesso!", "O paciente " + newEvent.title + " foi cadastrado!", "success");
 							$("#calendar").fullCalendar("renderEvent", newEvent, true);
 						}
 						else {
-							showMessage("danger", "Ops! Algo deu errado!");
-							console.log(response);
+							// showMessage("danger", "Ops! Algo deu errado!");
+							swal("Ops!", "Algo deu errado!", "error");
 						}
 					},
 				});
@@ -59,4 +61,4 @@ $(document).ready(function () {
 		},
 	});
 
-});
+}

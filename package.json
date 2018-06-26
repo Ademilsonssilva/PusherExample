@@ -5,7 +5,8 @@
   "main": "index.html",
   "dependencies": {
     "bootstrap": "^4.1.1",
-    "fullcalendar": "^3.9.0"
+    "fullcalendar": "^3.9.0",
+    "sweetalert": "^2.1.0"
   },
   "devDependencies": {},
   "scripts": {

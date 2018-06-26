@@ -2,6 +2,8 @@
 	
 	require("../vendor/autoload.php");
 	
+	$connection_errors = [];
+	
 	/************ DB *************/
 	$driver = "driver"; 
 	$host 	= "host";
@@ -13,7 +15,7 @@
 		$conn = new PDO("{$driver}:host={$host};dbname={$db}", $user, $pwd);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	} catch(PDOException $e) {
-		echo 'ERROR: ' . $e->getMessage();
+		$connection_errors[] = $e->getMessage();
 	}
 	/*****************************/
 

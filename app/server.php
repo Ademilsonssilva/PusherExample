@@ -6,15 +6,19 @@ namespace Ademilson\PusherExample;
 
 require("fullCalendar.class.php");
 require("../vendor/autoload.php");
-use \Ademilson\PusherExample\App\FullCalendar;	
+use \Ademilson\PusherExample\App\FullCalendar;
+error_reporting(E_ERROR);
 
 header('Access-Control-Allow-Origin: *');
 
-$fullCalendar = new FullCalendar();
 
 if (!isset($_POST["action"])){
 	echo "Ação não informada";
 	exit;
+}
+
+if ($_POST["action"] != "testconnection") {
+	$fullCalendar = new FullCalendar();
 }
 
 if ($_POST["action"] == "addevent"){
@@ -54,6 +58,26 @@ else if ($_POST["action"] == "deleteevents") {
 	$fullCalendar->deleteEvents();
 	echo "true";
 
+}
+
+else if ($_POST["action"] == "testconnection") {
+	try{
+		$fullCalendar = new FullCalendar();
+
+		if(!$pusher->get( '/channels' )) {
+			$connection_errors[] = "Nenhum canal do PUSHER foi encontrado!";
+		}
+
+		if (sizeof($connection_errors) > 0) {
+			echo json_encode($connection_errors);
+		}
+		else {
+			echo 1;
+		}
+	}
+	catch (PDOException $e) {
+		echo $e->getMessage();
+	}
 }
 
 else {

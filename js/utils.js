@@ -24,3 +24,32 @@ function showNewNotification (message)
 	row.append(row_content.append(content));
 	$("#notificationContainer").append(row);
 }
+
+function testConnection() 
+{
+	var passou = false;
+	$.ajax({
+		url: "http://localhost:8080/app/server.php",
+		async: false,
+		type: "POST",
+		data: {
+			action: "testconnection",
+		},
+		success: function (response) {
+			if (response != 1) {
+				errors = JSON.parse(response);
+				for(i = 0; i < errors.length; i++) {
+					$("#errorContainer").append($("<p class='p-3 m-2 bg-danger text-white'> " + errors[i] + " </p>")).show();	
+				}
+			}
+			else {
+				passou = true;
+			}
+		},
+		error: function (response){
+			$("#errorContainer").append($("<p class='p-3 m-2 bg-danger text-white'> Caminho do Servidor não foi encontrado! </p>")).show();
+		},
+	});
+
+	return passou;
+}

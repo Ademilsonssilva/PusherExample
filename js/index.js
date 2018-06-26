@@ -2,6 +2,12 @@
  * @developer: Ademilson
  */
 $(document).ready(function () {
+
+
+	if (testConnection()) {
+		$("#buttonsContainer").show();
+		startCalendar();
+	}
 	
 	$("#btn_open_window").bind("click", function (event) {
 		open("notification.html", "Notification Screen", "height=450,width=650");
@@ -17,10 +23,10 @@ $(document).ready(function () {
 			success: function (response) {
 				if (response == "true") {
 					$("#calendar").fullCalendar("refetchEvents");
-					showMessage("success", "Operação realizada com sucesso!");
+					swal("Sucesso!", "Eventos aleatórios gerados!", "success");
 				}
 				else {
-					showMessage("danger", "Ops! Algo deu errado!");
+					swal("Ops!", "Algo deu errado!", "error");
 				}
 			},
 		});
@@ -38,10 +44,10 @@ $(document).ready(function () {
 					if (response == "true") {
 						$("#calendar").fullCalendar("removeEvents");
 						$("#calendar").fullCalendar("refetchEvents");
-						showMessage("success", "Operação realizada com sucesso!");
+						swal("Sucesso!", "Banco de dados resetado!", "success");
 					}
 					else {
-						showMessage("danger", "Ops! Algo deu errado!");
+						swal("Ops!", "Algo deu errado!", "error");
 					}
 				}
 			})
